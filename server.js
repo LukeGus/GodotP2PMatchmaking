@@ -1,23 +1,20 @@
 const http       = require('http');
 const WebSocket  = require('ws');
 
-// ---- tiny HTTP endpoint ---------------------------------------------------
 const PORT   = 3000;
 http.createServer((_, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Match-maker running\n');
 }).listen(PORT, () => console.log(`HTTP OK  : http://localhost:${PORT}`));
 
-// ---- WebSocket matchmaking -------------------------------------------------
 const wss    = new WebSocket.Server({ port: 3001 });
-const queue  = [];                // waiting players (WebSocket objects)
+const queue  = [];
 
-// Add heartbeat to detect inactive connections
 function heartbeat() {
   this.isAlive = true;
 }
 
-const HEARTBEAT_INTERVAL = 30000; // 30 seconds
+const HEARTBEAT_INTERVAL = 30000;
 const interval = setInterval(() => {
   wss.clients.forEach((ws) => {
     if (ws.isAlive === false) {
@@ -51,8 +48,7 @@ wss.on('connection', ws => {
     try { msg = JSON.parse(raw); } catch { return; }
 
     if (msg.type === 'join' && typeof msg.oid === 'string') {
-      ws.oid = msg.oid;           // stash for later
-      // Remove any existing instances of this OID from the queue
+      ws.oid = msg.oid;
       queue.forEach((existingWs, index) => {
         if (existingWs.oid === msg.oid) {
           queue.splice(index, 1);
@@ -60,7 +56,7 @@ wss.on('connection', ws => {
       });
       queue.push(ws);
       console.log(`Added ${ws.oid} to queue`);
-      tryPair();                  // see if we can create a match
+      tryPair();
     } else if (msg.type === 'cancel' && typeof msg.oid === 'string') {
       removeFromQueue(ws);
       ws.send(JSON.stringify({
@@ -69,11 +65,11 @@ wss.on('connection', ws => {
     }
   });
 
-  ws.on('close', () => {          // remove from queue if they disconnect
+  ws.on('close', () => {
     removeFromQueue(ws);
   });
 
-  ws.on('error', () => {          // remove from queue on error
+  ws.on('error', () => {
     removeFromQueue(ws);
   });
 });
@@ -83,30 +79,26 @@ function tryPair () {
     const host   = queue.shift();
     const client = queue.shift();
 
-    // sockets might have died between enqueue and now
     if (host.readyState   !== WebSocket.OPEN ||
         client.readyState !== WebSocket.OPEN ||
         !host.isAlive || !client.isAlive) {
-      // Put alive clients back in queue
       if (host.readyState === WebSocket.OPEN && host.isAlive) {
         queue.push(host);
       }
       if (client.readyState === WebSocket.OPEN && client.isAlive) {
         queue.push(client);
       }
-      continue; // skip closed/dead sockets, keep looping
+      continue;
     }
 
     console.log(`Matching ${host.oid} (host) with ${client.oid} (client)`);
 
-    // tell the chosen host:
     host.send(JSON.stringify({
       type     : 'match',
       role     : 'host',
       peer_oid : client.oid
     }));
 
-    // tell the client who to join:
     client.send(JSON.stringify({
       type     : 'match',
       role     : 'client',
