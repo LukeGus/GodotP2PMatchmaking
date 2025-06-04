@@ -6,6 +6,9 @@
 If you would like, you can support the project here!\
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/LukeGustafson803)
 
+> [!NOTE]
+> This project is only possible because of [netfox](https://foxssake.github.io/netfox/latest/) and [noray](https://github.com/foxssake/noray)!
+
 # Overview
 GodotP2PMatchmaking allows Godot users to create a free self-hosted networking solution for their game by creating their own relay and matchmaking server.
 
