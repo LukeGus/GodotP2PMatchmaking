@@ -2,12 +2,14 @@ const http       = require('http');
 const WebSocket  = require('ws');
 
 const PORT   = 3000;
+const REMOTE_PORT = 3001;
+
 http.createServer((_, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Match-maker running\n');
 }).listen(PORT, () => console.log(`HTTP OK  : http://localhost:${PORT}`));
 
-const wss    = new WebSocket.Server({ port: 3001 });
+const wss    = new WebSocket.Server({ port: REMOTE_PORT });
 const queue  = [];
 
 function heartbeat() {
@@ -107,4 +109,4 @@ function tryPair () {
   }
 }
 
-console.log(`WS  OK  : ws://localhost:3001`); 
+console.log(`WS  OK  : ws://localhost:`+ REMOTE_PORT); 
