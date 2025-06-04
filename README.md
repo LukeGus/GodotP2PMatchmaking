@@ -3,30 +3,50 @@
 ![GitHub forks](https://img.shields.io/github/forks/LukeGus/GodotP2PMatchmaking?style=flat&label=Forks)
 ![GitHub Release](https://img.shields.io/github/v/release/LukeGus/GodotP2PMatchmaking?style=flat&label=Release)
 
-If you would like, you can support the project here!\
+If you'd like to support this project, you can do so here:  
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/LukeGustafson803)
 
-> [!NOTE]
-> This project is only possible because of [netfox](https://foxssake.github.io/netfox/latest/) and [noray](https://github.com/foxssake/noray)!
+> **Note:**  
+> This project is made possible thanks to [netfox](https://foxssake.github.io/netfox/latest/) and [noray](https://github.com/foxssake/noray).
+
+---
 
 # Overview
-GodotP2PMatchmaking allows Godot users to create a free self-hosted networking solution for their game by creating their own relay and matchmaking server.
+
+**GodotP2PMatchmaking** empowers Godot developers to create a fully self-hosted networking solution by running their own relay and matchmaking servers.
+
+---
 
 # Features
-- 100% self-hosted
-- Directly connect 2 clients via join code
-- One button click to matchmake 2 clients together
-- Example project included
+
+- 100% self-hosted — no third-party dependencies  
+- Direct peer-to-peer connection using join codes  
+- One-click matchmaking for pairing two clients  
+- Includes a working example project  
+
+---
 
 # Planned Features
-- Support for more than 2 players
-- More in the future!
 
-# Set-up
-Visit the GodotP2PMatchmaking [Wiki](https://github.com/LukeGus/GodotP2PMatchmaking/wiki).
+- Support for multiplayer sessions with more than 2 players  
+- Additional enhancements and improvements to come!  
+
+---
+
+# Setup
+
+For detailed setup instructions, visit the [GodotP2PMatchmaking Wiki](https://github.com/LukeGus/GodotP2PMatchmaking/wiki).
+
+---
 
 # Support
-If you need help with Termix, open an issue or a pull request on the [GitHub](https://github.com/LukeGus/GodotP2PMatchmaking/issues) repo. If you would like to support me financially, you can on [Paypal](https://paypal.me/LukeGustafson803).
+
+Need help? Open an issue or submit a pull request on the [GitHub repo](https://github.com/LukeGus/GodotP2PMatchmaking/issues).  
+
+If you’d like to support development financially, please consider donating via [PayPal](https://paypal.me/LukeGustafson803).
+
+---
 
 # License
-Distributed under the MIT license. See LICENSE for more information.
+
+This project is distributed under the [MIT License](LICENSE).
