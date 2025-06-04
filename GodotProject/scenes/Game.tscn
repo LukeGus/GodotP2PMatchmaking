@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bute2yhx3n08q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ve7bo"]
+font_size = 80
+
+[node name="Game" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "In Game Scene"
+label_settings = SubResource("LabelSettings_ve7bo")
+horizontal_alignment = 1
+vertical_alignment = 1
