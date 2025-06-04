@@ -1,0 +1,15 @@
+Control
+HSeparator
+Label
+VBoxContainer
+HBoxContainer
+VSeparator
+Node2D
+RayCast2D
+CollisionShape2D
+CharacterBody2D
+Camera2D
+RigidBody2D
+Sprite2D
+CollisionPolygon2D
+RemoteTransform2D
