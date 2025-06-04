@@ -28,7 +28,8 @@ If you'd like to support this project, you can do so here:
 
 # Planned Features
 
-- Support for multiplayer sessions with more than 2 players  
+- Support for multiplayer sessions with more than 2 players
+- Simplify installation by creating my own Docker image
 - Additional enhancements and improvements to come!  
 
 ---
