@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://chl5if85lqgev"]
+
+[ext_resource type="Script" uid="uid://btm0vlq0k02xd" path="res://scripts/noray_manager.gd" id="1_ras1x"]
+[ext_resource type="Script" uid="uid://dlgxigpxol13l" path="res://scripts/matchmaking_manager.gd" id="2_cdhm0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ras1x"]
+font_size = 11
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ras1x"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="NorayManager" type="Node" parent="." node_paths=PackedStringArray("connect_ui", "oid_display", "host_oid_input", "noray_join_button", "noray_host_button", "copy_oid_button")]
+script = ExtResource("1_ras1x")
+connect_ui = NodePath("../UI/ConnectUI")
+oid_display = NodePath("../UI/ConnectUI/DirectConnect/OidDisplay")
+host_oid_input = NodePath("../UI/ConnectUI/DirectConnect/HostOidInput")
+noray_join_button = NodePath("../UI/ConnectUI/DirectConnect/NorayJoinButon")
+noray_host_button = NodePath("../UI/ConnectUI/DirectConnect/NorayHostButton")
+copy_oid_button = NodePath("../UI/ConnectUI/DirectConnect/CopyButton")
+
+[node name="MatchmakingManager" type="Node" parent="." node_paths=PackedStringArray("noray_manager", "matchmake_button", "cancel_button")]
+script = ExtResource("2_cdhm0")
+noray_manager = NodePath("../NorayManager")
+matchmake_button = NodePath("../UI/ConnectUI/Matchmaking/MatchmakeButton")
+cancel_button = NodePath("../UI/ConnectUI/Matchmaking/CancelMatchmakeButton")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ConnectUI" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="DirectConnect" type="VBoxContainer" parent="UI/ConnectUI"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "Direct Connection"
+
+[node name="SubHeader" type="Label" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "To use this feature, copy the OID of the device that will be the host and click \"Host Session\". On the other device, paste the OID into \"Enter host OID here..\" and click on \"Join Session\". Ensure that the \"Noray Address\" 
+variable on the NorayManager is set to a valid ip and port."
+label_settings = SubResource("LabelSettings_ras1x")
+
+[node name="OidDisplay" type="LineEdit" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "OID"
+editable = false
+
+[node name="CopyButton" type="Button" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "Copy OID"
+
+[node name="HSeparator" type="HSeparator" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxTexture_ras1x")
+
+[node name="HostOidInput" type="LineEdit" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "Enter host OID here..."
+placeholder_text = "Enter host OID here..."
+
+[node name="NorayJoinButon" type="Button" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "Join Session
+"
+
+[node name="NorayHostButton" type="Button" parent="UI/ConnectUI/DirectConnect"]
+layout_mode = 2
+text = "Host Session"
+
+[node name="HSeparator" type="HSeparator" parent="UI/ConnectUI"]
+layout_mode = 2
+theme_override_constants/separation = 42
+
+[node name="Matchmaking" type="VBoxContainer" parent="UI/ConnectUI"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="UI/ConnectUI/Matchmaking"]
+layout_mode = 2
+text = "Matchmaking"
+
+[node name="SubHeader" type="Label" parent="UI/ConnectUI/Matchmaking"]
+layout_mode = 2
+text = "To use this feature, simply click the matchmake function. This will connect two random clients that are currently matchmaking. Ensure that the \"WebSocket URL\" variable on the MatchmakingManager is set to the
+proper address."
+label_settings = SubResource("LabelSettings_ras1x")
+
+[node name="MatchmakeButton" type="Button" parent="UI/ConnectUI/Matchmaking"]
+layout_mode = 2
+text = "Matchmake"
+
+[node name="CancelMatchmakeButton" type="Button" parent="UI/ConnectUI/Matchmaking"]
+layout_mode = 2
+text = "Cancel"
